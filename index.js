@@ -1,9 +1,7 @@
-// You'll want to set these with either `CLIENT_ID=abc zapier test` or `zapier env 1.0.0 CLIENT_ID abc`
-// process.env.BASE_URL = process.env.BASE_URL 
-// process.env.CLIENT_ID = process.env.CLIENT_ID
-// process.env.CLIENT_SECRET = process.env.CLIENT_SECRET
 
 const authentication = require('./authentication');
+const ClientTrigger = require('./triggers/client');
+const InvoiceTrigger = require('./triggers/invoice')
 
 // To include the Authorization header on all outbound requests, simply define a function here.
 // It runs runs before each request is sent out, allowing you to make tweaks to the request in a centralized spot
@@ -29,13 +27,18 @@ const App = {
   resources: {},
 
   // If you want your trigger to show up, you better include it here!
-  triggers: {},
+  triggers: {
+    [ClientTrigger.key]: ClientTrigger,
+    [InvoiceTrigger.key]: InvoiceTrigger
+  },
 
   // If you want your searches to show up, you better include it here!
   searches: {},
 
   // If you want your creates to show up, you better include it here!
-  creates: {}
+  creates: {
+    // [clientCreate.key]: clientCreate,
+  }
 };
 
 // Finally, export the app.

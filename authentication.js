@@ -59,6 +59,7 @@ const testAuth = (z /*, bundle */) => {
     if (response.status === 401) {
       throw new Error('The access token you supplied is not valid');
     }
+    z.console.log(z.JSON.parse(response.content))
     return z.JSON.parse(response.content);
   });
 };
@@ -117,5 +118,5 @@ module.exports = {
 
 
   // assuming "username" is a key returned from the test
-  connectionLabel: '{{username}}'
+  connectionLabel: '{{first_name}} {{last_name}}'
 };
