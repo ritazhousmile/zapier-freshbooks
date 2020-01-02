@@ -1,7 +1,7 @@
 
 const authentication = require('./authentication');
 const ClientTrigger = require('./triggers/client');
-const InvoiceTrigger = require('./triggers/invoice')
+// const InvoiceTrigger = require('./triggers/invoice')
 
 // To include the Authorization header on all outbound requests, simply define a function here.
 // It runs runs before each request is sent out, allowing you to make tweaks to the request in a centralized spot
@@ -29,7 +29,7 @@ const App = {
   // If you want your trigger to show up, you better include it here!
   triggers: {
     [ClientTrigger.key]: ClientTrigger,
-    [InvoiceTrigger.key]: InvoiceTrigger
+    // [InvoiceTrigger.key]: InvoiceTrigger
   },
 
   // If you want your searches to show up, you better include it here!

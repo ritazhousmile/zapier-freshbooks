@@ -60,6 +60,7 @@ const getClient = (z, bundle) => {
 
 const getFallbackRealClient = async (z, bundle) => {
   // For the test poll, you should get some real data, to aid the setup process.
+  z.console.log(bundle.inputData)
   const options = {
     url: 'https://api.freshbooks.com/accounting/account/{{bundle.inputData.account_id}}/users/clients',
     // params: {
@@ -72,9 +73,9 @@ const getFallbackRealClient = async (z, bundle) => {
     if (response.status !==200) {
     throw new Error('bad request ' + response.content);
     }
-  let clients = response.JSON.result.clients
+  let clients = response.json.response.result.clients
   z.console.log(clients[0])
-  return clients[0]
+  return clients
 };
 
 
@@ -97,9 +98,9 @@ module.exports = {
 
     // `inputFields` can define the fields a user could provide,
     // we'll pass them in as `bundle.inputData` later.
-    // inputFields: [
-    //   // {key: 'account', type: 'string', helpText: 'Which account do you want to choose'}
-    // ],
+    inputFields: [
+      {key: 'account_id', type: 'string', helpText: 'Which account do you want to choose'}
+    ],
 
     type: 'hook',
 
