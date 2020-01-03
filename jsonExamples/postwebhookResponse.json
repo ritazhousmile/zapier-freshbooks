@@ -1,0 +1,13 @@
+{
+    "response": {
+        "result": {
+            "callback": {
+                "callbackid": 762191,
+                "verified": false,
+                "uri": "http://webhook.site/4c52e125-c3d9-486a-a3cf-f9922d695db6",
+                "event": "invoice.create",
+                "updated_at": "2020-01-03T10:13:39Z"
+            }
+        }
+    }
+}
