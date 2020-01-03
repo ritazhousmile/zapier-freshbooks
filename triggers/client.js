@@ -3,8 +3,7 @@ const subscribeHook = (z, bundle) => {
   // bundle.targetUrl has the Hook URL this app should call when a recipe is created.
   const data = {
     url: bundle.targetUrl,
-    username: bundle.inputData.username,
-    email: bundle.inputData.email
+    event: "client.create"
   };
 
   // You can build requests and our client will helpfully inject all the variables
