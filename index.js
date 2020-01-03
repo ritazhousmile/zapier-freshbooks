@@ -1,3 +1,5 @@
+const InvoiceCreate = require('./creates/invoice');
+const ClientCreate = require('./creates/client');
 const InvoiceTrigger = require('./triggers/invoice');
 
 const authentication = require('./authentication');
@@ -37,6 +39,8 @@ const App = {
 
   // If you want your creates to show up, you better include it here!
   creates: {
+    [InvoiceCreate.key]: InvoiceCreate,
+    [ClientCreate.key]: ClientCreate,
     // [clientCreate.key]: clientCreate,
   }
 };

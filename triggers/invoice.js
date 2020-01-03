@@ -208,5 +208,5 @@ module.exports = {
     //   {key: 'email', label: 'Email'},
     //   {key: 'mob_phone', label: 'Moble Phone'},
     // ]
-  
+
 };
