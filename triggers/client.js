@@ -1,9 +1,12 @@
-const subscribeHook = (z, bundle) => {
+const subscribeHook = async (z, bundle) => {
 
   // bundle.targetUrl has the Hook URL this app should call when a recipe is created.
   const data = {
-    url: bundle.targetUrl,
-    event: "client.create"
+    "callback": {
+        uri: bundle.targetUrl,
+        event: "client.create",
+        account_id: bundle.inputData.account_id
+    }
   };
 
   // You can build requests and our client will helpfully inject all the variables
@@ -11,12 +14,23 @@ const subscribeHook = (z, bundle) => {
   const options = {
     url: 'https://api.freshbooks.com/events/account/{{bundle.inputData.account_id}}/events/callbacks',
     method: 'POST',
-    body: JSON.stringify(data)
+    body: data
   };
 
+  const response = await z.request (options)
+
+  // z.console.log(response.json.response.result.callback)
+  // z.console.log(response.json)
+
+  if (response.status !== 200) {
+    throw new Error("There is an issue registering the webhook")
+  }
+
+  return response
+
   // You may return a promise or a normal data structure from any perform method.
-  return z.request(options)
-    .then((response) => JSON.parse(response.content));
+  // return z.request(options)
+  //   .then((response) => JSON.parse(response.content));
 };
 
 const unsubscribeHook = (z, bundle) => {

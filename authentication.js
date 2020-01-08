@@ -60,7 +60,14 @@ const testAuth = (z /*, bundle */) => {
       throw new Error('The access token you supplied is not valid');
     }
     z.console.log(z.JSON.parse(response.content))
-    return z.JSON.parse(response.content);
+    let info = z.JSON.parse(response.content)
+    let first_name = info.response.profile.first_name
+    let last_name = info.response.profile.last_name
+    let full_name = first_name + " " + last_name
+    // z.console.log(first_name)
+    // z.console.log(last_name)
+    // z.console.log(full_name)
+    return full_name;
   });
 };
 
@@ -118,5 +125,5 @@ module.exports = {
 
 
   // assuming "username" is a key returned from the test
-  connectionLabel: '{{first_name}} {{last_name}}'
+  connectionLabel: testAuth
 };

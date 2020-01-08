@@ -14,18 +14,18 @@ const subscribeHook = async (z, bundle) => {
   const options = {
     url: 'https://api.freshbooks.com/events/account/{{bundle.inputData.account_id}}/events/callbacks',
     method: 'POST',
-    body: JSON.stringify(data)
+    body: data
   };
 
   const response = await z.request(options)
-  z.console.log(response.json.response.result.callback)
-  z.console.log(response.json)
+  // z.console.log(response.json.response.result.invoices)
+  // z.console.log(response.json)
 
   if (response.status !== 200) {
     throw new Error("there is an issue registering the webhook")
   }
 
-  return response.result.callback
+  return response
   // You may return a promise or a normal data structure from any perform method.
   // return z.request(options)
   //   .then((response) => JSON.parse(response.content));
@@ -68,7 +68,6 @@ const getInvoice = (z, bundle) => {
 
 const getFallbackRealInvoices = async (z, bundle) => {
   // For the test poll, you should get some real data, to aid the setup process.
-  z.console.log(bundle.inputData)
   const options = {
     url: 'https://api.freshbooks.com/accounting/account/{{bundle.inputData.account_id}}/invoices/invoices',
 
