@@ -9,6 +9,7 @@ const createInvoice = (z, bundle) => {
       notes: bundle.inputData.notes
     })
   });
+
   return responsePromise
     .then(response => z.JSON.parse(response.content));
 };
@@ -24,8 +25,21 @@ module.exports = {
 
   operation: {
     inputFields: [
+      {
+        key: 'account_id',
+        required: true,
+        altersDynamicFields: true,
+        label: "Account Dynamic Dropdown",
+        dynamic: "account.id.account_name"
+      },
+      {
+        key: 'get_client',
+        required: true,
+
+        label: "client Dynamic Dropdown",
+        dynamic: "get_client.id.name"
+      },
       {key: 'client', required: true},
-      {key: 'account_id', required: true},
       {key: 'currency_code', label: "Currency Code"},
       {key: 'notes', label: "Notes"},
 

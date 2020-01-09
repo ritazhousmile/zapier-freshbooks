@@ -8,7 +8,17 @@ const createClient = (z, bundle) => {
         email: bundle.inputData.email,
         fname: bundle.inputData.fname,
         lname: bundle.inputData.lname,
-        note: bundle.inputData.note
+        note: bundle.inputData.note,
+        home_phone: bundle.inputData.home_phone,
+        language: bundle.inputData.language,
+        organization: bundle.inputData.organization,
+        mob_phone: bundle.inputData.mob_phone,
+        work_phone: bundle.inputData.work_phone,
+        p_street: bundle.inputData.p_street,
+        p_city: bundle.inputData.p_city,
+        p_state: bundle.inputData.p_state,
+        p_country: bundle.inputData.p_country
+
       }
     })
   });
@@ -27,12 +37,26 @@ module.exports = {
 
   operation: {
     inputFields: [
+      {
+        key: 'account',
+        required: true,
+
+        label: "Account Dynamic Dropdown",
+        dynamic: "account.id.account_name"
+      },
       {key: 'email', required: true},
-      {key: 'account_id', required: true},
       {key: 'fname', label: "First Name"},
       {key: 'lname', label: "Last Name"},
       {key: 'note', label: "Label"},
-
+      {key: 'home_phone', label: "Home Phone"},
+      {key: 'mob_phone', label: "Moble Phone"},
+      {key: 'language', label: "Language"},
+      {key: 'work_phone', label: "Work Phone"},
+      {key: 'organization', label: "Organization"},
+      {key: 'p_street', label: "Primary Street"},
+      {key: 'p_city', label: "Primary city"},
+      {key: 'p_state', label: "Primary State"},
+      {key: 'p_country', label: "Primary Country"}
     ],
     perform: createClient,
 

@@ -1,3 +1,5 @@
+const GetclientTrigger = require('./triggers/get_client');
+const AccountTrigger = require('./triggers/account');
 const InvoiceCreate = require('./creates/invoice');
 const ClientCreate = require('./creates/client');
 const InvoiceTrigger = require('./triggers/invoice');
@@ -30,6 +32,8 @@ const App = {
 
   // If you want your trigger to show up, you better include it here!
   triggers: {
+    [GetclientTrigger.key]: GetclientTrigger,
+    [AccountTrigger.key]: AccountTrigger,
     [InvoiceTrigger.key]: InvoiceTrigger,
     [ClientTrigger.key]: ClientTrigger,
   },
